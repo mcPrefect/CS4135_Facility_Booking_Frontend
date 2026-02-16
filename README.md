@@ -30,9 +30,5 @@ src/
 │   └── common/        # Shared components
 ├── pages/             # Page-level components
 ├── services/          # API integration layer
-│   ├── api.js        # Axios client configuration
-│   ├── authService.js
-│   └── bookingService.js
-├── utils/             # Helper functions
-└── App.jsx           # Main application component
+└── utils/             # Helper functions
 ```
