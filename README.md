@@ -9,7 +9,28 @@ React-based web interface for the University of Limerick facility booking system
 - Member 3: [Darren Nugent] - [22365893] - Booking Service
 - Member 4: [Kevin Burke] - [22355634] - Notification Service
 - Member 5: [Michael Cronin] - [22336842] - NLP Service
-- Member 6: [Muadh Muhsin Zibiri] - [22235302] - Approval Service
+- Member 6: [Muadh Muhsin Zibiri] - [22235302] - Frontend & API gateway
+
+## Run locally (`app/`)
+
+```bash
+cd app
+npm install
+npm run dev
+```
+
+- SPA: [http://localhost:3000](http://localhost:3000) (Vite dev server)
+- Set `VITE_API_BASE_URL` in `.env.development` if the gateway is not at `http://localhost:8080`.
+
+## Docker (production static build)
+
+From `app/`:
+
+```bash
+docker build -t facility-frontend --build-arg VITE_API_BASE_URL=http://localhost:8080 .
+```
+
+Serves nginx on port **80** (map host `3000:80` in Compose if you want `http://localhost:3000`).
 
 ## Features
 
