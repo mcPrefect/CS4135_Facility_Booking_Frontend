@@ -11,6 +11,10 @@ React-based web interface for the University of Limerick facility booking system
 - Member 5: [Michael Cronin] - [22336842] - NLP Service
 - Member 6: [Muadh Muhsin Zibiri] - [22235302] - Frontend & API gateway
 
+## API contract (gateway-relative)
+
+UI flows, endpoints, auth, and error expectations: [docs/frontend-api-endpoint-matrix.md](docs/frontend-api-endpoint-matrix.md).
+
 ## Run locally (`app/`)
 
 ```bash
