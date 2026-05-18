@@ -4,6 +4,8 @@ Owner: Muadh Muhsin Zibiri (22235302)
 Context: Frontend & API Integration (API Gateway consumer)
 Gateway Base URL: [http://localhost:8080](http://localhost:8080)
 
+**SPA implementation status:** login, register, facility search, create/list/cancel bookings, admin pending approvals (approve/reject), notifications, NLP query — all via `src/services/api.js` through the gateway.
+
 
 | Service Context  | UI Use Case                    | Method | Endpoint (via Gateway)                                   | Request DTO                                 | Success Response            | Error Response | Auth           | Notes / ACL Mapping                              |
 | ---------------- | ------------------------------ | ------ | -------------------------------------------------------- | ------------------------------------------- | --------------------------- | -------------- | -------------- | ------------------------------------------------ |

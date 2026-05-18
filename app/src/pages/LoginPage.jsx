@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { login } from '../services/api'
-import { setStoredToken } from '../utils/jwt'
+import { decodeJwtPayload, setStoredToken } from '../utils/jwt'
 
 export default function LoginPage() {
   const navigate = useNavigate()
@@ -16,6 +16,9 @@ export default function LoginPage() {
       const data = await login(email, password)
       if (data?.token) {
         setStoredToken(data.token)
+        const uid =
+          data.userId || decodeJwtPayload(data.token)?.userId
+        if (uid) localStorage.setItem('userId', String(uid))
         navigate('/', { replace: true })
       } else {
         setError(data?.message || 'Login failed')

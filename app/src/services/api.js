@@ -98,3 +98,53 @@ export async function nlpQuery(rawText) {
   })
   return handle(res)
 }
+
+export async function createBooking({ facilityId, startTime, endTime, purpose }) {
+  const res = await fetch(`${base()}/api/v1/bookings`, {
+    method: 'POST',
+    headers: authHeaders({ 'Content-Type': 'application/json' }),
+    body: JSON.stringify({ facilityId, startTime, endTime, purpose: purpose || null }),
+  })
+  return handle(res)
+}
+
+export async function fetchMyBookings(status) {
+  const q = status ? `?status=${encodeURIComponent(status)}` : ''
+  const res = await fetch(`${base()}/api/v1/bookings${q}`, {
+    headers: authHeaders(),
+  })
+  return handle(res)
+}
+
+export async function cancelBooking(bookingId) {
+  const res = await fetch(`${base()}/api/v1/bookings/${bookingId}`, {
+    method: 'DELETE',
+    headers: authHeaders(),
+  })
+  return handle(res)
+}
+
+export async function fetchPendingApprovals() {
+  const res = await fetch(`${base()}/api/v1/approvals/pending`, {
+    headers: authHeaders(),
+  })
+  return handle(res)
+}
+
+export async function approveBooking(bookingId, reason) {
+  const res = await fetch(`${base()}/api/v1/approvals/${bookingId}/approve`, {
+    method: 'PATCH',
+    headers: authHeaders({ 'Content-Type': 'application/json' }),
+    body: JSON.stringify(reason ? { reason } : {}),
+  })
+  return handle(res)
+}
+
+export async function rejectBooking(bookingId, reason) {
+  const res = await fetch(`${base()}/api/v1/approvals/${bookingId}/reject`, {
+    method: 'PATCH',
+    headers: authHeaders({ 'Content-Type': 'application/json' }),
+    body: JSON.stringify({ reason: reason || 'Rejected by administrator' }),
+  })
+  return handle(res)
+}

@@ -23,5 +23,15 @@ export function getStoredToken() {
 
 export function setStoredToken(token) {
   if (token) localStorage.setItem('token', token)
-  else localStorage.removeItem('token')
+  else {
+    localStorage.removeItem('token')
+    localStorage.removeItem('userId')
+  }
+}
+
+/** UUID string from JWT userId claim (or login response stored in localStorage). */
+export function getUserIdFromSession(token) {
+  const claims = decodeJwtPayload(token)
+  if (claims?.userId && typeof claims.userId === 'string') return claims.userId
+  return localStorage.getItem('userId')
 }
